@@ -96,8 +96,6 @@ if __name__ == "__main__":
         time.sleep(2)
 
         waiting_to_unblock = True
-        # date = datetime.today().strftime('%d/%m/%Y')
-        # date_exists_in_statistics = False
 
         while waiting_to_unblock:
             try:
