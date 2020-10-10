@@ -5,7 +5,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 from configparser import ConfigParser
-from datetime import datetime
 
 import signal
 import time
