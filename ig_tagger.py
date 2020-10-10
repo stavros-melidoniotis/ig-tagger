@@ -18,6 +18,7 @@ USERNAME_XPATH = '//*[@id="loginForm"]/div/div[1]/div/label/input'
 PASS_XPATH = '//*[@id="loginForm"]/div/div[2]/div/label/input'
 COMMENT_XPATH = '//*[@id="react-root"]/section/main/div/div[1]/article/div[3]/section[3]/div/form/textarea'
 POST_XPATH = '//*[@id="react-root"]/section/main/div/div[1]/article/div[3]/section[3]/div/form/button'
+COOKIE_XPATH = '/html/body/div[2]/div/div/div/div[2]/button[1]'
 
 
 def choose_names_to_tag(ig_names, required_tags):
@@ -31,13 +32,13 @@ def choose_names_to_tag(ig_names, required_tags):
 
     return tags
 
+
 def signal_handler(*args):
-    print("\n\nTotal tags made:\t {}".format(number_of_tags))
+    print("\n\nTotal tags made: {}".format(number_of_tags))
     exit(0)
 
 
 if __name__ == "__main__":
-
     number_of_tags = 0
     signal.signal(signal.SIGINT, signal_handler)
 
@@ -62,15 +63,16 @@ if __name__ == "__main__":
 
     WebDriverWait(chrome, 15).until(EC.presence_of_element_located((By.XPATH, USERNAME_XPATH)))
 
+    cookie_accept = chrome.find_element_by_xpath(COOKIE_XPATH)
     username_input = chrome.find_element_by_xpath(USERNAME_XPATH)
     password_input = chrome.find_element_by_xpath(PASS_XPATH)
     login_button = chrome.find_element_by_xpath(LOGIN_XPATH)
 
+    cookie_accept.click()
     username_input.send_keys(username)
     password_input.send_keys(password)
 
     time.sleep(1)
-
     login_button.click()
 
     time.sleep(3)
@@ -113,5 +115,5 @@ if __name__ == "__main__":
 
                 # set a random waiting time to mess with IG algorithm
                 seconds_to_wait = random.randint(1,60)
-                print("Waiting for {} seconds".format(seconds_to_wait))
+                print("Tagged: {}\nWaiting for {} seconds\n".format(comment, seconds_to_wait))
                 time.sleep(seconds_to_wait)
