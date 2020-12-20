@@ -13,7 +13,7 @@ When running the script a Chrome window will open with the message "Chrome is be
 
 After each comment, the script selects a random number of seconds to wait before commenting again. This way it minimizes the potential of IG algorithm blocking you. If, however, you get blocked it waits for 1 minute before trying to comment again. This process is repeated until IG's block disappears.
 
-You can stop the script by pressing CTRL + C on the terminal (Linux environment) and it will output the total number of comment it made.
+You can stop the script by pressing CTRL + C on the terminal (Linux environment) and it will output the total number of comments it made.
 
 # Requirements
 You must have Python3 and pip installed on your system (tested with Python 3.7.5 and 3.8.3). Create a virtual environment by typing `python3 -m venv ./yourname`. Activate the environment by typing `source ./yourname/bin/activate`. The final step is to install Selenium package by typing `pip3 install selenium`.
