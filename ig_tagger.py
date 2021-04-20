@@ -17,7 +17,7 @@ LOGIN_XPATH = '//*[@id="loginForm"]/div/div[3]/button'
 USERNAME_XPATH = '//*[@id="loginForm"]/div/div[1]/div/label/input'
 PASS_XPATH = '//*[@id="loginForm"]/div/div[2]/div/label/input'
 COMMENT_XPATH = '//*[@id="react-root"]/section/main/div/div[1]/article/div[3]/section[3]/div/form/textarea'
-POST_XPATH = '//*[@id="react-root"]/section/main/div/div[1]/article/div[3]/section[3]/div/form/button'
+POST_XPATH = '//*[@id="react-root"]/section/main/div/div[1]/article/div[3]/section[3]/div/form/button[2]'
 COOKIE_XPATH = '/html/body/div[2]/div/div/div/div[2]/button[1]'
 
 
