@@ -1,4 +1,4 @@
-# ig_tagger
+# ig-tagger
 Python script that automates the process of tagging people in Instagram giveaways.
 
 # How it works
