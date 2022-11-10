@@ -3,23 +3,21 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
 
 from configparser import ConfigParser
 
 import signal
 import time
 import random
-import platform
-import os.path
-
 
 LOGIN_XPATH = '//*[@id="loginForm"]/div/div[3]/button'
+LOGGED_XPATH = '/html/body/div[1]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div/div/section/div/button'
 USERNAME_XPATH = '//*[@id="loginForm"]/div/div[1]/div/label/input'
 PASS_XPATH = '//*[@id="loginForm"]/div/div[2]/div/label/input'
-COMMENT_XPATH = '//*[@id="react-root"]/section/main/div/div[1]/article/div[3]/section[3]/div/form/textarea'
-POST_XPATH = '//*[@id="react-root"]/section/main/div/div[1]/article/div[3]/section[3]/div/form/button[2]'
-COOKIE_XPATH = '/html/body/div[2]/div/div/div/div[2]/button[1]'
-
+COMMENT_XPATH = '/html/body/div[1]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div[1]/div[1]/article/div/div[2]/div/div[2]/section[3]/div/form/textarea'
+POST_XPATH = '/html/body/div[1]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div[1]/div[1]/article/div/div[2]/div/div[2]/section[3]/div/form/div[2]/button'
+COOKIE_XPATH = '/html/body/div[1]/div/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/button[1]'
 
 def choose_names_to_tag(ig_names, required_tags):
     tags = []
@@ -51,22 +49,16 @@ if __name__ == "__main__":
     username = parser.get('Instagram', 'Username')
     password = parser.get('Instagram', 'Password')
 
-    if platform.system() == 'Linux':
-        chromedriver_path = parser.get('Selenium', 'Linux_Driver_Path')
-    elif platform.system() == 'Windows':
-        chromedriver_path = parser.get('Selenium', 'Win_Driver_Path')
-    else:
-        print("OS not supported. Please run this script in Linux or Windows system.")
-
-    chrome = webdriver.Chrome(executable_path=chromedriver_path)
+    chrome = webdriver.Chrome(ChromeDriverManager().install())
     chrome.get("https://www.instagram.com")
+    chrome.maximize_window()
 
     WebDriverWait(chrome, 15).until(EC.presence_of_element_located((By.XPATH, USERNAME_XPATH)))
 
-    cookie_accept = chrome.find_element_by_xpath(COOKIE_XPATH)
-    username_input = chrome.find_element_by_xpath(USERNAME_XPATH)
-    password_input = chrome.find_element_by_xpath(PASS_XPATH)
-    login_button = chrome.find_element_by_xpath(LOGIN_XPATH)
+    cookie_accept = chrome.find_element(By.XPATH, COOKIE_XPATH)
+    username_input = chrome.find_element(By.XPATH, USERNAME_XPATH)
+    password_input = chrome.find_element(By.XPATH, PASS_XPATH)
+    login_button = chrome.find_element(By.XPATH, LOGIN_XPATH)
 
     cookie_accept.click()
     username_input.send_keys(username)
@@ -75,23 +67,25 @@ if __name__ == "__main__":
     time.sleep(1)
     login_button.click()
 
-    time.sleep(3)
+    WebDriverWait(chrome, 15).until(EC.presence_of_element_located((By.XPATH, LOGGED_XPATH)))
 
     chrome.get(contest_url)
 
+    WebDriverWait(chrome, 15).until(EC.presence_of_element_located((By.XPATH, COMMENT_XPATH)))
+
     while True:
         names = choose_names_to_tag(ig_names, required_tags)
-
-        comment_input = chrome.find_element_by_xpath(COMMENT_XPATH)
+        time.sleep(30)
+        comment_input = chrome.find_element(By.XPATH, COMMENT_XPATH)
         comment_input.click()
-        comment_input = chrome.find_element_by_xpath(COMMENT_XPATH)
+        comment_input = chrome.find_element(By.XPATH, COMMENT_XPATH)
         
         comment = ""
         for name in names:
             comment += "{} ".format(name)
 
         comment_input.send_keys(comment)
-        post_button = chrome.find_element_by_xpath(POST_XPATH)
+        post_button = chrome.find_element(By.XPATH, POST_XPATH)
         post_button.click()
 
         time.sleep(2)
@@ -107,7 +101,7 @@ if __name__ == "__main__":
 
                 # wait 1 min before commenting again
                 time.sleep(60)
-                post_button = chrome.find_element_by_xpath(POST_XPATH).click()
+                post_button = chrome.find_element(By.XPATH, POST_XPATH).click()
                 time.sleep(2)
             except:
                 waiting_to_unblock = False
