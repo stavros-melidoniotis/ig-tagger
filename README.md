@@ -18,7 +18,7 @@ You can stop the script by pressing CTRL + C on the terminal (or CMD) and it wil
 # Requirements
 You must have Python3 and pip installed on your system (tested with Python 3.7.5 and 3.8.3). Then run ``` pip install selenium ```.
 
-**Strongly Recommended** 
-Create a virtual environment by typing `python3 -m venv ./yourname`. Activate the environment by typing `source ./yourname/bin/activate` and finally install selenium package inside the virtual environment like mentioned above.
+**Strongly Recommended**: 
+Create a virtual environment by typing `python3 -m venv ./<venv-name>`. Activate the environment by typing `source ./<venv-name>/bin/activate` and finally install the required packages with `pip install -r requirements.txt`.
 
-To run this script you need to navigate inside it's directory and type ``` python ig_tagger.py ```.
+To run this script you need to navigate inside it's directory and type ``` python3 ig_tagger.py ```.
