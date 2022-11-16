@@ -22,5 +22,3 @@ You must have Python3 and pip installed on your system (tested with Python 3.7.5
 Create a virtual environment by typing `python3 -m venv ./yourname`. Activate the environment by typing `source ./yourname/bin/activate` and finally install selenium package inside the virtual environment like mentioned above.
 
 To run this script you need to navigate inside it's directory and type ``` python ig_tagger.py ```.
-
-If you get an error about Chrome and chromedriver incompatible version, then open Chrome and navigate to chrome://version. Locate the version of your browser and download the appropriate chromedriver from [here](https://chromedriver.chromium.org/downloads). Replace the project's chromedriver with the chromedriver you just downloaded and you're done.
