@@ -16,7 +16,7 @@ After each comment, the script selects a random number of seconds to wait before
 You can stop the script by pressing CTRL + C on the terminal (or CMD) and it will output the total number of comments it made.
 
 # Requirements
-You must have Python3 and pip installed on your system (tested with Python 3.7.5 and 3.8.3). Then run ``` pip install selenium ```.
+You must have Python3 and pip installed on your system (tested with Python 3.7.5 and 3.8.3). Then run ``` pip install -r requirements.txt ```.
 
 **Strongly Recommended**: 
 Create a virtual environment by typing `python3 -m venv ./<venv-name>`. Activate the environment by typing `source ./<venv-name>/bin/activate` and finally install the required packages with `pip install -r requirements.txt`.
