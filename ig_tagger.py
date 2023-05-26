@@ -12,12 +12,12 @@ import time
 import random
 
 LOGIN_XPATH = '//*[@id="loginForm"]/div/div[3]/button'
-LOGGED_XPATH = '/html/body/div[1]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div/div/section/div/button'
+LOGGED_XPATH = '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[1]/div/div/div/div'
 USERNAME_XPATH = '//*[@id="loginForm"]/div/div[1]/div/label/input'
 PASS_XPATH = '//*[@id="loginForm"]/div/div[2]/div/label/input'
-COMMENT_XPATH = '/html/body/div[1]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div[1]/div[1]/article/div/div[2]/div/div[2]/section[3]/div/form/textarea'
-POST_XPATH = '/html/body/div[1]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div[1]/div[1]/article/div/div[2]/div/div[2]/section[3]/div/form/div[2]/button'
-COOKIE_XPATH = '/html/body/div[1]/div/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/button[1]'
+COMMENT_XPATH = '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/section/div/form/div/textarea'
+POST_XPATH = '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/section/div/form/div/div[2]/div'
+COOKIE_XPATH = '/html/body/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/button[1]'
 
 def choose_names_to_tag(ig_names, required_tags):
     tags = []
@@ -51,7 +51,6 @@ if __name__ == "__main__":
 
     chrome = webdriver.Chrome(ChromeDriverManager().install())
     chrome.get("https://www.instagram.com")
-    chrome.maximize_window()
 
     WebDriverWait(chrome, 15).until(EC.presence_of_element_located((By.XPATH, USERNAME_XPATH)))
 
